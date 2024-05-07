@@ -7,7 +7,7 @@ import {
   Route,
   Routes,
   Link,
-  useNavigate,
+  // useNavigate,
 } from "react-router-dom";
 import { useState, useEffect, useRef, ChangeEvent } from "react";
 import Editor from "./components/Editor";
@@ -105,7 +105,7 @@ function Appi() {
 }
 function App(){
   const [file, setFile] = useState<string | undefined>();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const uploadRef = useRef<HTMLInputElement>(null);
  
@@ -126,7 +126,7 @@ function App(){
 
       const dataURL = canvas.toDataURL('image/jpeg');
       setFile(dataURL);
-      navigate('/image-editor', { state: { imageData: dataURL } }); // Navigate with image data
+      // navigate('/image-editor', { state: { imageData: dataURL } }); 
     };
 
     const img = new Image();
@@ -141,6 +141,14 @@ function App(){
           <Route path="/image-editor" element={<Editor />} />
     </Routes>
     <div>
+    <h1>Image Manipulation</h1>
+          <a href="https://vitejs.dev" target="_blank">
+            <img src={viteLogo} className="logo" alt="Vite logo" />
+          </a>
+
+          <a href="https://react.dev" target="_blank">
+            <img src={re} className="logo react" alt="React logo" />
+          </a>
       <input ref={uploadRef} type="file" onChange={handleFileChange} />
       {file && <img src={file} alt="Selected File" />}
       <Link to="/image-editor" state={{ imageData: file }}> {/* Or use navigate directly */}
