@@ -1,18 +1,20 @@
 
 import { useRef, useState } from "react"
-import { BrowserRouter,Routes,Route,Link,useNavigate } from "react-router-dom"
+import {useNavigate } from "react-router-dom"
 import { ChangeEvent } from "react";
 const SelectImageCard = () => {
   const [imagePreview,setImagePreview]=useState('');
   const [progress,setProgress]=useState(0);
   const navigate=useNavigate();
   const fileInputRef=useRef<HTMLInputElement>(null)
-// IMAGE HANDLER
+
 
 const handleImageChange=(e:ChangeEvent<HTMLInputElement>)=>{
   const file = e.target.files?.[0] as Blob;
   if (file) {
     const reader=new FileReader();
+
+
     reader.onload=(e:ProgressEvent<FileReader>)=>{
       if (e.target && e.target.result) {
         const imageUrl=e.target.result as string;
@@ -20,8 +22,8 @@ const handleImageChange=(e:ChangeEvent<HTMLInputElement>)=>{
         setImagePreview(imageUrl)
         setTimeout(() => {
           setProgress(100);
-          navigate("/image-editor");
-        }, 2000); // Simulate progress completion after 2 seconds
+          navigate("/image-editor",{state:{imageUrl}});
+        }, 2000); 
         
       }
       else{
@@ -45,13 +47,13 @@ const handleImageChange=(e:ChangeEvent<HTMLInputElement>)=>{
 
 }
   return (
-    <div style={{border:'6px dotted red',padding:'14px'}}>
+    <div >
         <div>
-            <input type="file" onChange={handleImageChange} ref={fileInputRef}/>
+            <input style={{display:'none'}} type="file" onChange={handleImageChange} ref={fileInputRef}/>
         
             <button onClick={() => fileInputRef.current && fileInputRef.current.click()}>select image</button>
             {progress>0 && <progress value={progress} max='100' />}
-            {imagePreview && <img src='' alt="image-preview" style={{ width:'300',height:'300' }} />}
+            {imagePreview && <img src={imagePreview} alt="image-preview" width={200} height={200} />}
         </div>
 
 

@@ -40,3 +40,12 @@
 .read-the-docs {
   color: #888;
 } */
+
+.crop-container{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid red;
+  padding: 12px 14px;
+}
