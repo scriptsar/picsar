@@ -7,7 +7,10 @@ import Editor from "./components/Editor";
 import Navbar from "./components/Navbar";
 function App() {
   return (
-    <BrowserRouter>
+   <div className= "border-4 border-green-600 flex-col h-screen">
+
+
+<BrowserRouter>
         <Navbar/>
       <Routes>
     
@@ -16,6 +19,7 @@ function App() {
       </Routes>
   
     </BrowserRouter>
+   </div>
   );
 }
 export default App;
