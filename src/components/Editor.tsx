@@ -5,7 +5,7 @@ import "react-image-crop/dist/ReactCrop.css";
 import CropImagePreview from "./CropImagePreview";
 import { cropImageCanvasPreview } from "./cropImageCanvasPreview";
 import { useDebounceEffect } from "../hooks/useDebounceEffect";
-
+import Sidebar from "./Sidebar";
 function Editor() {
   const [crop, setCrop] = useState<Crop>();
   const cropImagePreviewCanvasRef = useRef<HTMLCanvasElement>(null);
@@ -95,40 +95,33 @@ function Editor() {
   }
 
   return (
-    <>
-      <ReactCrop
-        crop={crop}
-        onChange={(c) => setCrop(c)}
-        onComplete={(c) => setCompletedCrop(c)}
-      >
-        <img src={imageData} ref={imgRef} width={300} height={300} />
-      </ReactCrop>
+    <div className=" flex flex-grow w-full h-full min-h-0 overflow-x-auto overflow-y-hidden">
+      <Sidebar
+        onDownloadCropClick={onDownloadCropClick}
+        hiddenAnchorRef={hiddenAnchorRef}
+      />
 
-      {!!completedCrop && (
-        <CropImagePreview
-          completedCrop={completedCrop}
-          previewCanvasRef={cropImagePreviewCanvasRef}
-        />
-      )}
-
-      <button onClick={onDownloadCropClick}>Download Crop</button>
-      <div style={{ fontSize: 12, color: "#666" }}>
-        If you get a security error when downloading try opening the Preview in
-        a new tab (icon near top right).
+      <div className="flex-grow flex flex-col min-w-728-pc w-full min-h-0 max-h-full overflow-y-hidden gap-2.5 dark:bg-darkSurface-100">
+        <div className="flex flex-col items-stretch h-2/3 lg:h-full">
+          <div className="mx-auto lg:my-auto">
+            <ReactCrop
+              crop={crop}
+              onChange={(c) => setCrop(c)}
+              onComplete={(c) => setCompletedCrop(c)}
+            >
+              <img src={imageData} ref={imgRef} width={300} height={300} />
+            </ReactCrop>
+          </div>
+        </div>
+        {!completedCrop && <p>preview</p>}
+        {!!completedCrop && (
+          <CropImagePreview
+            completedCrop={completedCrop}
+            previewCanvasRef={cropImagePreviewCanvasRef}
+          />
+        )}
       </div>
-      <a
-        href="#hidden"
-        ref={hiddenAnchorRef}
-        download
-        style={{
-          position: "absolute",
-          top: "-200vh",
-          visibility: "hidden",
-        }}
-      >
-        Hidden download
-      </a>
-    </>
+    </div>
   );
 }
 

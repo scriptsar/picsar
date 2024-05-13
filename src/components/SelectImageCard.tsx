@@ -50,7 +50,7 @@ const handleImageChange=(e:ChangeEvent<HTMLInputElement>)=>{
 
 
   return (
-    <div className=" bg-cyan-600 ml-10 mt-4 mb-4 border-2 border-cyan-800 border-dashed flex items-center justify-center w-96 ">
+    <div className=" align-middle bg-cyan-600 ml-10 mt-4 mb-4 border-2 border-cyan-800 border-dashed flex items-center justify-center w-96 ">
         <div className="p-4 flex-col">
           
             <input style={{display:'none'}} type="file" onChange={handleImageChange} ref={fileInputRef}/>

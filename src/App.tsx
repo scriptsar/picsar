@@ -7,7 +7,7 @@ import Editor from "./components/Editor";
 import Navbar from "./components/Navbar";
 function App() {
   return (
-   <div className= "border-4 border-green-600 flex-col h-screen">
+   <div className= "">
 
 
 <BrowserRouter>
