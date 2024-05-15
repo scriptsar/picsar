@@ -40,7 +40,7 @@ export function useDebounceEffect(
       clearTimeout(timer.current);}
   };
 
-}, [waitTime, fn]); }
+}, [waitTime, fn,...deps || []]); }
 
 
 
