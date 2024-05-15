@@ -1,5 +1,4 @@
-import re from "./assets/re.png";
-import viteLogo from "/vite.svg";
+
 import "./App.css";
 import SelectImageCard from "./components/SelectImageCard";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
