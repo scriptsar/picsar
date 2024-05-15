@@ -23,24 +23,24 @@ export function useDebounceEffect(
   waitTime: number,
   deps?: React.DependencyList
 ) {
-  const timer = useRef<NodeJS.Timeout | null>(null);
+    const timer = useRef<number | null>(null);
 
-  useEffect(() => {
+    useEffect(() => {
     // Clear any existing timeout before setting a new one
-    if (timer.current) {
+    if (timer.current!== null) {
       clearTimeout(timer.current);
     }
-
-    timer.current = setTimeout(() => {
+    // Schedule a new timeout using setTimeout
+    timer.current = window.setTimeout(() => {
       fn();
     }, waitTime);
 
-    // Cleanup function (clears timeout on unmount or dependency change)
-    return () => {
-      if (timer.current) {
-        clearTimeout(timer.current);
-      }
-    };
-  }, deps); // Dependency array
-}
+  return () => {
+    if (timer.current!== null) {
+      clearTimeout(timer.current);}
+  };
+
+}, [waitTime, fn]); }
+
+
 
