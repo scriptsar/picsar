@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, RefObject } from "react"; // Import useState, useEffect
+import { useState, useEffect, useRef } from "react"; // Import useState, useEffect
 import { useLocation } from "react-router-dom"; // Import useLocation for accessing route state
 import ReactCrop, { PixelCrop, type Crop } from "react-image-crop";
 import "react-image-crop/dist/ReactCrop.css";
